@@ -1,0 +1,608 @@
+from PyQt4 import QtCore, QtGui
+
+from frmFormato import frm_formato
+from resources.jsonFormato import json_formato
+from resources.rest import *
+
+jsonFormato = json_formato()
+recurso = resources()
+lista_tipo_ingreso = ()
+formato = frm_formato()
+try:
+    _fromUtf8 = QtCore.QString.fromUtf8
+except AttributeError:
+    def _fromUtf8(s):
+        return s
+
+try:
+    _encoding = QtGui.QApplication.UnicodeUTF8
+
+
+    def _translate(context, text, disambig):
+        return QtGui.QApplication.translate(context, text, disambig, _encoding)
+except AttributeError:
+    def _translate(context, text, disambig):
+        return QtGui.QApplication.translate(context, text, disambig)
+
+
+class Ui_FormIngresoDetalle(object):
+    def setupUi(self, FormIngresoDetalle):
+        FormIngresoDetalle.setObjectName(_fromUtf8("FormIngresoDetalle"))
+        FormIngresoDetalle.resize(1223, 716)
+        sizePolicy = QtGui.QSizePolicy(QtGui.QSizePolicy.Fixed, QtGui.QSizePolicy.Fixed)
+        sizePolicy.setHorizontalStretch(0)
+        sizePolicy.setVerticalStretch(0)
+        sizePolicy.setHeightForWidth(FormIngresoDetalle.sizePolicy().hasHeightForWidth())
+        FormIngresoDetalle.setSizePolicy(sizePolicy)
+        FormIngresoDetalle.setMaximumSize(QtCore.QSize(1223, 16777215))
+        font = QtGui.QFont()
+        font.setPointSize(8)
+        self.id_ingreso = ()
+        FormIngresoDetalle.setFont(font)
+        self.verticalLayout_3 = QtGui.QVBoxLayout(FormIngresoDetalle)
+        self.verticalLayout_3.setSizeConstraint(QtGui.QLayout.SetFixedSize)
+        self.verticalLayout_3.setObjectName(_fromUtf8("verticalLayout_3"))
+        self.verticalLayout = QtGui.QVBoxLayout()
+        self.verticalLayout.setSizeConstraint(QtGui.QLayout.SetFixedSize)
+        self.verticalLayout.setContentsMargins(-1, -1, -1, 0)
+        self.verticalLayout.setObjectName(_fromUtf8("verticalLayout"))
+        self.horizontalLayout = QtGui.QHBoxLayout()
+        self.horizontalLayout.setSizeConstraint(QtGui.QLayout.SetFixedSize)
+        self.horizontalLayout.setContentsMargins(-1, -1, -1, 0)
+        self.horizontalLayout.setObjectName(_fromUtf8("horizontalLayout"))
+        self.horizontalLayout_7 = QtGui.QHBoxLayout()
+        self.horizontalLayout_7.setSizeConstraint(QtGui.QLayout.SetFixedSize)
+        self.horizontalLayout_7.setObjectName(_fromUtf8("horizontalLayout_7"))
+        self.lblFechaIngreso = QtGui.QLabel(FormIngresoDetalle)
+        self.lblFechaIngreso.setMaximumSize(QtCore.QSize(150, 26))
+        self.lblFechaIngreso.setSizeIncrement(QtCore.QSize(0, 0))
+        self.lblFechaIngreso.setAlignment(QtCore.Qt.AlignRight | QtCore.Qt.AlignTrailing | QtCore.Qt.AlignVCenter)
+        self.lblFechaIngreso.setObjectName(_fromUtf8("lblFechaIngreso"))
+        self.horizontalLayout_7.addWidget(self.lblFechaIngreso)
+        self.fechaIngreso = QtGui.QDateEdit(FormIngresoDetalle)
+        self.fechaIngreso.setMinimumSize(QtCore.QSize(150, 26))
+        self.fechaIngreso.setMaximumSize(QtCore.QSize(16777215, 26))
+        self.fechaIngreso.setFrame(False)
+        self.fechaIngreso.setCalendarPopup(True)
+        self.fechaIngreso.setObjectName(_fromUtf8("fechaIngreso"))
+        self.horizontalLayout_7.addWidget(self.fechaIngreso)
+        spacerItem = QtGui.QSpacerItem(50, 40, QtGui.QSizePolicy.Minimum, QtGui.QSizePolicy.Fixed)
+        self.horizontalLayout_7.addItem(spacerItem)
+        self.lblFechaEgreso = QtGui.QLabel(FormIngresoDetalle)
+        self.lblFechaEgreso.setMaximumSize(QtCore.QSize(157, 26))
+        self.lblFechaEgreso.setSizeIncrement(QtCore.QSize(0, 0))
+        self.lblFechaEgreso.setAlignment(QtCore.Qt.AlignRight | QtCore.Qt.AlignTrailing | QtCore.Qt.AlignVCenter)
+        self.lblFechaEgreso.setObjectName(_fromUtf8("lblFechaEgreso"))
+        self.horizontalLayout_7.addWidget(self.lblFechaEgreso)
+        self.fechaEgreso = QtGui.QDateEdit(FormIngresoDetalle)
+        self.fechaEgreso.setMinimumSize(QtCore.QSize(150, 26))
+        self.fechaEgreso.setMaximumSize(QtCore.QSize(16777215, 26))
+        self.fechaEgreso.setFrame(False)
+        self.fechaEgreso.setCalendarPopup(True)
+        self.fechaEgreso.setObjectName(_fromUtf8("fechaEgreso"))
+        self.horizontalLayout_7.addWidget(self.fechaEgreso)
+        self.horizontalLayout_4 = QtGui.QHBoxLayout()
+        self.horizontalLayout_4.setSizeConstraint(QtGui.QLayout.SetFixedSize)
+        self.horizontalLayout_4.setContentsMargins(-1, 0, -1, 0)
+        self.horizontalLayout_4.setSpacing(0)
+        self.horizontalLayout_4.setObjectName(_fromUtf8("horizontalLayout_4"))
+        self.horizontalLayout_7.addLayout(self.horizontalLayout_4)
+        spacerItem1 = QtGui.QSpacerItem(665, 20, QtGui.QSizePolicy.Fixed, QtGui.QSizePolicy.Minimum)
+        self.horizontalLayout_7.addItem(spacerItem1)
+        self.horizontalLayout.addLayout(self.horizontalLayout_7)
+        self.verticalLayout.addLayout(self.horizontalLayout)
+        self.horizontalLayout_12 = QtGui.QHBoxLayout()
+        self.horizontalLayout_12.setSizeConstraint(QtGui.QLayout.SetFixedSize)
+        self.horizontalLayout_12.setObjectName(_fromUtf8("horizontalLayout_12"))
+        self.horizontalLayout_15 = QtGui.QHBoxLayout()
+        self.horizontalLayout_15.setSizeConstraint(QtGui.QLayout.SetFixedSize)
+        self.horizontalLayout_15.setObjectName(_fromUtf8("horizontalLayout_15"))
+        self.lblHoraIngreso = QtGui.QLabel(FormIngresoDetalle)
+        self.lblHoraIngreso.setMaximumSize(QtCore.QSize(150, 26))
+        self.lblHoraIngreso.setAlignment(QtCore.Qt.AlignRight | QtCore.Qt.AlignTrailing | QtCore.Qt.AlignVCenter)
+        self.lblHoraIngreso.setObjectName(_fromUtf8("lblHoraIngreso"))
+        self.horizontalLayout_15.addWidget(self.lblHoraIngreso)
+        self.horaIngreso = QtGui.QTimeEdit(FormIngresoDetalle)
+        self.horaIngreso.setMinimumSize(QtCore.QSize(150, 0))
+        self.horaIngreso.setMaximumSize(QtCore.QSize(16777215, 26))
+        self.horaIngreso.setFrame(False)
+        self.horaIngreso.setObjectName(_fromUtf8("horaIngreso"))
+        self.horaIngreso.setDisplayFormat(_translate("Form", "h:mm ", None))
+        self.horizontalLayout_15.addWidget(self.horaIngreso)
+        spacerItem2 = QtGui.QSpacerItem(50, 40, QtGui.QSizePolicy.Minimum, QtGui.QSizePolicy.Fixed)
+        self.horizontalLayout_15.addItem(spacerItem2)
+        self.lblHoraEgreso = QtGui.QLabel(FormIngresoDetalle)
+        self.lblHoraEgreso.setMaximumSize(QtCore.QSize(150, 26))
+        self.lblHoraEgreso.setAlignment(QtCore.Qt.AlignRight | QtCore.Qt.AlignTrailing | QtCore.Qt.AlignVCenter)
+        self.lblHoraEgreso.setObjectName(_fromUtf8("lblHoraEgreso"))
+        self.horizontalLayout_15.addWidget(self.lblHoraEgreso)
+        self.horaEgreso = QtGui.QTimeEdit(FormIngresoDetalle)
+        self.horaEgreso.setEnabled(True)
+        self.horaEgreso.setMinimumSize(QtCore.QSize(150, 0))
+        self.horaEgreso.setMaximumSize(QtCore.QSize(16777215, 26))
+        self.horaEgreso.setFrame(False)
+        self.horaEgreso.setObjectName(_fromUtf8("horaEgreso"))
+        self.horaEgreso.setDisplayFormat(_translate("Form", "h:mm ", None))
+        self.horizontalLayout_15.addWidget(self.horaEgreso)
+        self.horizontalLayout_12.addLayout(self.horizontalLayout_15)
+        self.horizontalLayout_13 = QtGui.QHBoxLayout()
+        self.horizontalLayout_13.setContentsMargins(10, -1, -1, 0)
+        self.horizontalLayout_13.setObjectName(_fromUtf8("horizontalLayout_13"))
+        self.lblObservaciones = QtGui.QLabel(FormIngresoDetalle)
+        self.lblObservaciones.setMaximumSize(QtCore.QSize(150, 26))
+        self.lblObservaciones.setAlignment(QtCore.Qt.AlignRight | QtCore.Qt.AlignTrailing | QtCore.Qt.AlignVCenter)
+        self.lblObservaciones.setObjectName(_fromUtf8("lblObservaciones"))
+        self.horizontalLayout_13.addWidget(self.lblObservaciones)
+        self.txtObservaciones = QtGui.QPlainTextEdit(FormIngresoDetalle)
+        self.txtObservaciones.setMaximumSize(QtCore.QSize(500, 60))
+        self.txtObservaciones.setFrameShape(QtGui.QFrame.Box)
+        self.txtObservaciones.setObjectName(_fromUtf8("txtObservaciones"))
+        self.horizontalLayout_13.addWidget(self.txtObservaciones)
+        self.horizontalLayout_12.addLayout(self.horizontalLayout_13)
+        self.verticalLayout.addLayout(self.horizontalLayout_12)
+        self.horizontalLayout_5 = QtGui.QHBoxLayout()
+        self.horizontalLayout_5.setSizeConstraint(QtGui.QLayout.SetDefaultConstraint)
+        self.horizontalLayout_5.setContentsMargins(-1, -1, -1, 0)
+        self.horizontalLayout_5.setObjectName(_fromUtf8("horizontalLayout_5"))
+        self.lblTipoIngreso = QtGui.QLabel(FormIngresoDetalle)
+        self.lblTipoIngreso.setMinimumSize(QtCore.QSize(0, 26))
+        self.lblTipoIngreso.setMaximumSize(QtCore.QSize(16777215, 26))
+        self.lblTipoIngreso.setAlignment(QtCore.Qt.AlignRight | QtCore.Qt.AlignTrailing | QtCore.Qt.AlignVCenter)
+        self.lblTipoIngreso.setObjectName(_fromUtf8("lblTipoIngreso"))
+        self.horizontalLayout_5.addWidget(self.lblTipoIngreso)
+        self.cmbTipoIngreso = QtGui.QComboBox(FormIngresoDetalle)
+        self.cmbTipoIngreso.setMinimumSize(QtCore.QSize(382, 0))
+        self.cmbTipoIngreso.setMaximumSize(QtCore.QSize(500, 26))
+        self.cmbTipoIngreso.setEditable(False)
+        self.cmbTipoIngreso.setFrame(False)
+        self.cmbTipoIngreso.setObjectName(_fromUtf8("cmbTipoIngreso"))
+        self.horizontalLayout_5.addWidget(self.cmbTipoIngreso)
+        spacerItem3 = QtGui.QSpacerItem(49, 20, QtGui.QSizePolicy.Expanding, QtGui.QSizePolicy.Minimum)
+        self.horizontalLayout_5.addItem(spacerItem3)
+        self.verticalLayout.addLayout(self.horizontalLayout_5)
+        self.verticalLayout_3.addLayout(self.verticalLayout)
+        spacerItem4 = QtGui.QSpacerItem(26, 20, QtGui.QSizePolicy.Expanding, QtGui.QSizePolicy.Minimum)
+        self.verticalLayout_3.addItem(spacerItem4)
+        self.verticalLayout_2 = QtGui.QVBoxLayout()
+        self.verticalLayout_2.setSizeConstraint(QtGui.QLayout.SetFixedSize)
+        self.verticalLayout_2.setContentsMargins(-1, -1, -1, 0)
+        self.verticalLayout_2.setObjectName(_fromUtf8("verticalLayout_2"))
+        self.horizontalLayout_19 = QtGui.QHBoxLayout()
+        self.horizontalLayout_19.setContentsMargins(-1, 0, 0, -1)
+        self.horizontalLayout_19.setObjectName(_fromUtf8("horizontalLayout_19"))
+        self.verticalLayout_8 = QtGui.QVBoxLayout()
+        self.verticalLayout_8.setSizeConstraint(QtGui.QLayout.SetFixedSize)
+        self.verticalLayout_8.setContentsMargins(-1, -1, 0, 0)
+        self.verticalLayout_8.setObjectName(_fromUtf8("verticalLayout_8"))
+        self.lblPacientes = QtGui.QLabel(FormIngresoDetalle)
+        self.lblPacientes.setAlignment(QtCore.Qt.AlignCenter)
+        self.lblPacientes.setObjectName(_fromUtf8("lblPacientes"))
+        self.verticalLayout_8.addWidget(self.lblPacientes)
+        self.tblPacientes = QtGui.QTableWidget(FormIngresoDetalle)
+        self.tblPacientes.setMinimumSize(QtCore.QSize(500, 0))
+        self.tblPacientes.setMaximumSize(QtCore.QSize(5000, 400))
+        font = QtGui.QFont()
+        font.setPointSize(8)
+        self.tblPacientes.setFont(font)
+        self.tblPacientes.setFrameShape(QtGui.QFrame.Box)
+        self.tblPacientes.setFrameShadow(QtGui.QFrame.Sunken)
+        self.tblPacientes.setSelectionMode(QtGui.QAbstractItemView.SingleSelection)
+        self.tblPacientes.setSelectionBehavior(QtGui.QAbstractItemView.SelectRows)
+        self.tblPacientes.setGridStyle(QtCore.Qt.SolidLine)
+        self.tblPacientes.setCornerButtonEnabled(False)
+        self.tblPacientes.setObjectName(_fromUtf8("tblPacientes"))
+        self.tblPacientes.setColumnCount(3)
+        self.tblPacientes.setRowCount(0)
+        item = QtGui.QTableWidgetItem()
+        self.tblPacientes.setHorizontalHeaderItem(0, item)
+        item = QtGui.QTableWidgetItem()
+        self.tblPacientes.setHorizontalHeaderItem(1, item)
+        item = QtGui.QTableWidgetItem()
+        self.tblPacientes.setHorizontalHeaderItem(2, item)
+        self.tblPacientes.horizontalHeader().setDefaultSectionSize(185)
+        self.tblPacientes.horizontalHeader().setHighlightSections(False)
+        self.tblPacientes.horizontalHeader().setMinimumSectionSize(100)
+        self.tblPacientes.verticalHeader().setVisible(False)
+        self.tblPacientes.verticalHeader().setHighlightSections(False)
+        self.verticalLayout_8.addWidget(self.tblPacientes)
+        self.horizontalLayout_19.addLayout(self.verticalLayout_8)
+        self.horizontalLayout_3 = QtGui.QHBoxLayout()
+        self.horizontalLayout_3.setObjectName(_fromUtf8("horizontalLayout_3"))
+        self.horizontalLayout_19.addLayout(self.horizontalLayout_3)
+        self.verticalLayout_11 = QtGui.QVBoxLayout()
+        self.verticalLayout_11.setContentsMargins(-1, 0, -1, -1)
+        self.verticalLayout_11.setObjectName(_fromUtf8("verticalLayout_11"))
+        self.horizontalLayout_21 = QtGui.QHBoxLayout()
+        self.horizontalLayout_21.setContentsMargins(-1, 0, -1, -1)
+        self.horizontalLayout_21.setObjectName(_fromUtf8("horizontalLayout_21"))
+        self.lblIDPaciente = QtGui.QLabel(FormIngresoDetalle)
+        self.lblIDPaciente.setMaximumSize(QtCore.QSize(16777215, 26))
+        self.lblIDPaciente.setAlignment(QtCore.Qt.AlignRight | QtCore.Qt.AlignTrailing | QtCore.Qt.AlignVCenter)
+        self.lblIDPaciente.setObjectName(_fromUtf8("lblIDPaciente"))
+        self.horizontalLayout_21.addWidget(self.lblIDPaciente)
+        self.txtIDPaciente = QtGui.QTextEdit(FormIngresoDetalle)
+        self.txtIDPaciente.setMaximumSize(QtCore.QSize(240, 26))
+        self.txtIDPaciente.setFrameShape(QtGui.QFrame.NoFrame)
+        self.txtIDPaciente.setReadOnly(True)
+        self.txtIDPaciente.setObjectName(_fromUtf8("txtIDPaciente"))
+        self.horizontalLayout_21.addWidget(self.txtIDPaciente)
+        spacerItem5 = QtGui.QSpacerItem(135, 20, QtGui.QSizePolicy.Fixed, QtGui.QSizePolicy.Minimum)
+        self.horizontalLayout_21.addItem(spacerItem5)
+        self.verticalLayout_11.addLayout(self.horizontalLayout_21)
+        self.horizontalLayout_22 = QtGui.QHBoxLayout()
+        self.horizontalLayout_22.setContentsMargins(-1, 0, -1, -1)
+        self.horizontalLayout_22.setObjectName(_fromUtf8("horizontalLayout_22"))
+        self.lblCentroAtencion = QtGui.QLabel(FormIngresoDetalle)
+        self.lblCentroAtencion.setMaximumSize(QtCore.QSize(16777215, 26))
+        self.lblCentroAtencion.setAlignment(QtCore.Qt.AlignRight | QtCore.Qt.AlignTrailing | QtCore.Qt.AlignVCenter)
+        self.lblCentroAtencion.setObjectName(_fromUtf8("lblCentroAtencion"))
+        self.horizontalLayout_22.addWidget(self.lblCentroAtencion)
+        self.txtPacienteNombre = QtGui.QTextEdit(FormIngresoDetalle)
+        self.txtPacienteNombre.setMaximumSize(QtCore.QSize(375, 26))
+        self.txtPacienteNombre.setFrameShape(QtGui.QFrame.NoFrame)
+        self.txtPacienteNombre.setReadOnly(True)
+        self.txtPacienteNombre.setObjectName(_fromUtf8("txtPacienteNombre"))
+        self.horizontalLayout_22.addWidget(self.txtPacienteNombre)
+        self.verticalLayout_11.addLayout(self.horizontalLayout_22)
+        self.horizontalLayout_23 = QtGui.QHBoxLayout()
+        self.horizontalLayout_23.setContentsMargins(-1, 0, -1, -1)
+        self.horizontalLayout_23.setObjectName(_fromUtf8("horizontalLayout_23"))
+        self.lblFechaNacimiento = QtGui.QLabel(FormIngresoDetalle)
+        self.lblFechaNacimiento.setMaximumSize(QtCore.QSize(16777215, 26))
+        self.lblFechaNacimiento.setAlignment(QtCore.Qt.AlignRight | QtCore.Qt.AlignTrailing | QtCore.Qt.AlignVCenter)
+        self.lblFechaNacimiento.setObjectName(_fromUtf8("lblFechaNacimiento"))
+        self.horizontalLayout_23.addWidget(self.lblFechaNacimiento)
+        self.txtFechaNacimiento = QtGui.QTextEdit(FormIngresoDetalle)
+        self.txtFechaNacimiento.setMaximumSize(QtCore.QSize(375, 26))
+        self.txtFechaNacimiento.setFrameShape(QtGui.QFrame.NoFrame)
+        self.txtFechaNacimiento.setReadOnly(True)
+        self.txtFechaNacimiento.setObjectName(_fromUtf8("txtFechaNacimiento"))
+        self.horizontalLayout_23.addWidget(self.txtFechaNacimiento)
+        self.verticalLayout_11.addLayout(self.horizontalLayout_23)
+        self.horizontalLayout_19.addLayout(self.verticalLayout_11)
+        self.verticalLayout_7 = QtGui.QVBoxLayout()
+        self.verticalLayout_7.setContentsMargins(-1, 50, -1, -1)
+        self.verticalLayout_7.setObjectName(_fromUtf8("verticalLayout_7"))
+        self.horizontalLayout_19.addLayout(self.verticalLayout_7)
+        self.verticalLayout_2.addLayout(self.horizontalLayout_19)
+        self.horizontalLayout_18 = QtGui.QHBoxLayout()
+        self.horizontalLayout_18.setContentsMargins(-1, 0, -1, -1)
+        self.horizontalLayout_18.setObjectName(_fromUtf8("horizontalLayout_18"))
+        self.verticalLayout_4 = QtGui.QVBoxLayout()
+        self.verticalLayout_4.setObjectName(_fromUtf8("verticalLayout_4"))
+        self.lblAPCA = QtGui.QLabel(FormIngresoDetalle)
+        self.lblAPCA.setAlignment(QtCore.Qt.AlignCenter)
+        self.lblAPCA.setObjectName(_fromUtf8("lblAPCA"))
+        self.verticalLayout_4.addWidget(self.lblAPCA)
+        self.tblAPCA = QtGui.QTableWidget(FormIngresoDetalle)
+        self.tblAPCA.setMinimumSize(QtCore.QSize(500, 0))
+        self.tblAPCA.setMaximumSize(QtCore.QSize(5000, 400))
+        font = QtGui.QFont()
+        font.setPointSize(8)
+        self.tblAPCA.setFont(font)
+        self.tblAPCA.setFrameShape(QtGui.QFrame.Box)
+        self.tblAPCA.setSelectionMode(QtGui.QAbstractItemView.SingleSelection)
+        self.tblAPCA.setSelectionBehavior(QtGui.QAbstractItemView.SelectRows)
+        self.tblAPCA.setCornerButtonEnabled(False)
+        self.tblAPCA.setObjectName(_fromUtf8("tblAPCA"))
+        self.tblAPCA.setColumnCount(6)
+        self.tblAPCA.setRowCount(0)
+        item = QtGui.QTableWidgetItem()
+        self.tblAPCA.setHorizontalHeaderItem(0, item)
+        item = QtGui.QTableWidgetItem()
+        self.tblAPCA.setHorizontalHeaderItem(1, item)
+        item = QtGui.QTableWidgetItem()
+        self.tblAPCA.setHorizontalHeaderItem(2, item)
+        item = QtGui.QTableWidgetItem()
+        self.tblAPCA.setHorizontalHeaderItem(3, item)
+        item = QtGui.QTableWidgetItem()
+        self.tblAPCA.setHorizontalHeaderItem(4, item)
+        item = QtGui.QTableWidgetItem()
+        self.tblAPCA.setHorizontalHeaderItem(5, item)
+        self.tblAPCA.horizontalHeader().setDefaultSectionSize(170)
+        self.tblAPCA.horizontalHeader().setHighlightSections(False)
+        self.tblAPCA.verticalHeader().setVisible(False)
+        self.tblAPCA.verticalHeader().setHighlightSections(False)
+        self.verticalLayout_4.addWidget(self.tblAPCA)
+        self.horizontalLayout_18.addLayout(self.verticalLayout_4)
+        self.verticalLayout_10 = QtGui.QVBoxLayout()
+        self.verticalLayout_10.setContentsMargins(-1, 0, -1, -1)
+        self.verticalLayout_10.setObjectName(_fromUtf8("verticalLayout_10"))
+        self.horizontalLayout_17 = QtGui.QHBoxLayout()
+        self.horizontalLayout_17.setContentsMargins(-1, 0, -1, -1)
+        self.horizontalLayout_17.setObjectName(_fromUtf8("horizontalLayout_17"))
+        self.lblArea = QtGui.QLabel(FormIngresoDetalle)
+        self.lblArea.setMaximumSize(QtCore.QSize(16777215, 26))
+        self.lblArea.setAlignment(QtCore.Qt.AlignRight | QtCore.Qt.AlignTrailing | QtCore.Qt.AlignVCenter)
+        self.lblArea.setObjectName(_fromUtf8("lblArea"))
+        self.horizontalLayout_17.addWidget(self.lblArea)
+        self.txtArea = QtGui.QTextEdit(FormIngresoDetalle)
+        self.txtArea.setMaximumSize(QtCore.QSize(375, 26))
+        self.txtArea.setFrameShape(QtGui.QFrame.NoFrame)
+        self.txtArea.setReadOnly(True)
+        self.txtArea.setObjectName(_fromUtf8("txtArea"))
+        self.horizontalLayout_17.addWidget(self.txtArea)
+        self.verticalLayout_10.addLayout(self.horizontalLayout_17)
+        self.horizontalLayout_11 = QtGui.QHBoxLayout()
+        self.horizontalLayout_11.setContentsMargins(-1, 0, -1, -1)
+        self.horizontalLayout_11.setObjectName(_fromUtf8("horizontalLayout_11"))
+        self.lblCentroatencion = QtGui.QLabel(FormIngresoDetalle)
+        self.lblCentroatencion.setMaximumSize(QtCore.QSize(16777215, 26))
+        self.lblCentroatencion.setAlignment(QtCore.Qt.AlignRight | QtCore.Qt.AlignTrailing | QtCore.Qt.AlignVCenter)
+        self.lblCentroatencion.setObjectName(_fromUtf8("lblCentroatencion"))
+        self.horizontalLayout_11.addWidget(self.lblCentroatencion)
+        self.txtCentroAtencion = QtGui.QTextEdit(FormIngresoDetalle)
+        self.txtCentroAtencion.setMaximumSize(QtCore.QSize(375, 26))
+        self.txtCentroAtencion.setFrameShape(QtGui.QFrame.NoFrame)
+        self.txtCentroAtencion.setReadOnly(True)
+        self.txtCentroAtencion.setObjectName(_fromUtf8("txtCentroAtencion"))
+        self.horizontalLayout_11.addWidget(self.txtCentroAtencion)
+        self.verticalLayout_10.addLayout(self.horizontalLayout_11)
+        self.horizontalLayout_20 = QtGui.QHBoxLayout()
+        self.horizontalLayout_20.setContentsMargins(-1, 0, -1, -1)
+        self.horizontalLayout_20.setObjectName(_fromUtf8("horizontalLayout_20"))
+        self.lblPersonal_2 = QtGui.QLabel(FormIngresoDetalle)
+        self.lblPersonal_2.setMaximumSize(QtCore.QSize(16777215, 26))
+        self.lblPersonal_2.setAlignment(QtCore.Qt.AlignRight | QtCore.Qt.AlignTrailing | QtCore.Qt.AlignVCenter)
+        self.lblPersonal_2.setObjectName(_fromUtf8("lblPersonal_2"))
+        self.horizontalLayout_20.addWidget(self.lblPersonal_2)
+        self.txtPeronal_2 = QtGui.QTextEdit(FormIngresoDetalle)
+        self.txtPeronal_2.setMaximumSize(QtCore.QSize(375, 26))
+        self.txtPeronal_2.setFrameShape(QtGui.QFrame.NoFrame)
+        self.txtPeronal_2.setReadOnly(True)
+        self.txtPeronal_2.setObjectName(_fromUtf8("txtPeronal_2"))
+        self.horizontalLayout_20.addWidget(self.txtPeronal_2)
+        self.verticalLayout_10.addLayout(self.horizontalLayout_20)
+        self.horizontalLayout_18.addLayout(self.verticalLayout_10)
+        self.verticalLayout_6 = QtGui.QVBoxLayout()
+        self.verticalLayout_6.setContentsMargins(-1, 50, -1, -1)
+        self.verticalLayout_6.setObjectName(_fromUtf8("verticalLayout_6"))
+        self.horizontalLayout_18.addLayout(self.verticalLayout_6)
+        self.verticalLayout_2.addLayout(self.horizontalLayout_18)
+        spacerItem6 = QtGui.QSpacerItem(40, 20, QtGui.QSizePolicy.Expanding, QtGui.QSizePolicy.Minimum)
+        self.verticalLayout_2.addItem(spacerItem6)
+        self.horizontalLayout_2 = QtGui.QHBoxLayout()
+        self.horizontalLayout_2.setSizeConstraint(QtGui.QLayout.SetFixedSize)
+        self.horizontalLayout_2.setContentsMargins(-1, 8, -1, 0)
+        self.horizontalLayout_2.setSpacing(0)
+        self.horizontalLayout_2.setObjectName(_fromUtf8("horizontalLayout_2"))
+        spacerItem7 = QtGui.QSpacerItem(40, 20, QtGui.QSizePolicy.Expanding, QtGui.QSizePolicy.Minimum)
+        self.horizontalLayout_2.addItem(spacerItem7)
+        self.btnEnviar = QtGui.QPushButton(FormIngresoDetalle)
+        self.btnEnviar.setMaximumSize(QtCore.QSize(16777215, 25))
+        self.btnEnviar.setObjectName(_fromUtf8("btnEnviar"))
+        self.horizontalLayout_2.addWidget(self.btnEnviar)
+        spacerItem8 = QtGui.QSpacerItem(20, 25, QtGui.QSizePolicy.Minimum, QtGui.QSizePolicy.Fixed)
+        self.horizontalLayout_2.addItem(spacerItem8)
+        self.btnCancelar = QtGui.QPushButton(FormIngresoDetalle)
+        self.btnCancelar.setMaximumSize(QtCore.QSize(16777215, 25))
+        self.btnCancelar.setObjectName(_fromUtf8("btnCancelar"))
+        self.horizontalLayout_2.addWidget(self.btnCancelar)
+        spacerItem9 = QtGui.QSpacerItem(40, 20, QtGui.QSizePolicy.Expanding, QtGui.QSizePolicy.Minimum)
+        self.horizontalLayout_2.addItem(spacerItem9)
+        self.verticalLayout_2.addLayout(self.horizontalLayout_2)
+        self.verticalLayout_3.addLayout(self.verticalLayout_2)
+
+        self.retranslateUi(FormIngresoDetalle)
+        QtCore.QObject.connect(self.tblPacientes, QtCore.SIGNAL(_fromUtf8("itemSelectionChanged()")),
+                               self.paciente_row_was_clicked)
+        QtCore.QObject.connect(self.tblAPCA, QtCore.SIGNAL(_fromUtf8("itemSelectionChanged()")),
+                               self.apca_row_was_clicked)
+        QtCore.QObject.connect(self.btnEnviar, QtCore.SIGNAL(_fromUtf8("clicked()")), self.crear_ingreso)
+        QtCore.QObject.connect(self.btnCancelar, QtCore.SIGNAL(_fromUtf8("clicked()")), self.close)
+        QtCore.QMetaObject.connectSlotsByName(FormIngresoDetalle)
+        self = frm_formato.center(self)
+
+    def retranslateUi(self, FormIngresoDetalle):
+        FormIngresoDetalle.setWindowTitle(_translate("FormIngresoDetalle", "Nuevo ingreso", None))
+        self.lblFechaIngreso.setText(_translate("FormIngresoDetalle", "Fecha Ingreso: ", None))
+        self.lblFechaEgreso.setText(_translate("FormIngresoDetalle", "Fecha Egreso:", None))
+        self.lblHoraIngreso.setText(_translate("FormIngresoDetalle", "  Hora Ingreso: ", None))
+        self.lblHoraEgreso.setText(_translate("FormIngresoDetalle", "  Hora Egreso:", None))
+
+        self.lblObservaciones.setText(_translate("FormIngresoDetalle", "Observaciones:", None))
+        self.lblTipoIngreso.setText(_translate("FormIngresoDetalle", "Tipo de Ingreso:", None))
+        self.lblPacientes.setText(_translate("FormIngresoDetalle", "Pacientes", None))
+        item = self.tblPacientes.horizontalHeaderItem(0)
+        item.setText(_translate("FormIngresoDetalle", "idPaciente", None))
+        item = self.tblPacientes.horizontalHeaderItem(1)
+        item.setText(_translate("FormIngresoDetalle", "Paciente", None))
+        item = self.tblPacientes.horizontalHeaderItem(2)
+        item.setText(_translate("FormIngresoDetalle", "Fecha Nacimiento", None))
+        self.lblIDPaciente.setText(_translate("FormIngresoDetalle", "ID Paciente:", None))
+        self.lblCentroAtencion.setText(_translate("FormIngresoDetalle", "Paciente:", None))
+        self.lblFechaNacimiento.setText(_translate("FormIngresoDetalle", "Fecha Nacimiento:", None))
+        self.lblAPCA.setText(_translate("FormIngresoDetalle", "APCA", None))
+        item = self.tblAPCA.horizontalHeaderItem(0)
+        item.setText(_translate("FormIngresoDetalle", "Area", None))
+        item = self.tblAPCA.horizontalHeaderItem(1)
+        item.setText(_translate("FormIngresoDetalle", "Centro", None))
+        item = self.tblAPCA.horizontalHeaderItem(2)
+        item.setText(_translate("FormIngresoDetalle", "Personal", None))
+        item = self.tblAPCA.horizontalHeaderItem(3)
+        item.setText(_translate("FormIngresoDetalle", "idAreaCentroEspacio", None))
+        item = self.tblAPCA.horizontalHeaderItem(4)
+        item.setText(_translate("FormIngresoDetalle", "idAsignacionPersonalCentroArea", None))
+        item = self.tblAPCA.horizontalHeaderItem(5)
+        item.setText(_translate("FormIngresoDetalle", "idTurno", None))
+        self.lblArea.setText(_translate("FormIngresoDetalle", "Area:", None))
+        self.lblCentroatencion.setText(_translate("FormIngresoDetalle", "Centro de Atención:", None))
+        self.lblPersonal_2.setText(_translate("FormIngresoDetalle", "Personal Médico:", None))
+        self.btnEnviar.setText(_translate("FormIngresoDetalle", "Enviar", None))
+        self.btnCancelar.setText(_translate("FormIngresoDetalle", "Cancelar", None))
+        self.lista_pacientes()
+        self.lista_APCA()
+        self.lista_tipo_ingresos()
+        self.tblAPCA.setColumnHidden(3, True)
+        self.tblAPCA.setColumnHidden(4, True)
+        self.tblAPCA.setColumnHidden(5, True)
+
+    def lista_pacientes(self):
+        datos = get(entidad="Paciente")
+        self.tblPacientes.setRowCount(len(datos))
+        i = 0
+        for elemento in datos:
+            self.tblPacientes.setItem(i, 0, QtGui.QTableWidgetItem(str(elemento['idPaciente'])))
+            self.tblPacientes.setItem(i, 1, QtGui.QTableWidgetItem(elemento['nombres'] + " " + elemento['apellidos']))
+            self.tblPacientes.setItem(i, 2, QtGui.QTableWidgetItem(elemento['fechaNacimiento']))
+            i += 1
+
+    def lista_APCA(self):
+        datos = get(entidad="AsignacionPersonalCentroAreaEspacio")
+        self.tblAPCA.setRowCount(len(datos))
+        i = 0
+        for elemento in datos:
+            self.tblAPCA.setItem(i, 0, QtGui.QTableWidgetItem(
+                elemento['asignacionPersonalCentroArea']['idAreaCentro']['idArea']['nombre']))
+            self.tblAPCA.setItem(i, 1, QtGui.QTableWidgetItem(
+                elemento['asignacionPersonalCentroArea']['idAreaCentro']['idCentro']['nombreCorto']))
+            self.tblAPCA.setItem(i, 2, QtGui.QTableWidgetItem(
+                elemento['asignacionPersonalCentroArea']['idPersonal'][
+                    'nombres'] + " " + elemento['asignacionPersonalCentroArea']['idPersonal']['apellidos']))
+            self.tblAPCA.setItem(i, 3, QtGui.QTableWidgetItem(
+                str(elemento['asignacionPersonalCentroAreaEspacioPK']['idAreaCentroEspacio'])))
+            self.tblAPCA.setItem(i, 4, QtGui.QTableWidgetItem(
+                str(elemento['asignacionPersonalCentroAreaEspacioPK']['idAsignacionPersonalCentroArea'])))
+            self.tblAPCA.setItem(i, 5, QtGui.QTableWidgetItem(
+                str(elemento['asignacionPersonalCentroAreaEspacioPK']['idTurno'])))
+            i += 1
+
+    def lista_tipo_ingresos(self):
+        datos = get(entidad="TipoIngreso")
+        self.lista_tipo_ingreso = datos
+        i = 0
+        for elemento in datos:
+            self.cmbTipoIngreso.addItem(elemento['nombre'])
+            i += 1
+
+    def crear_ingreso(self):
+        # SE TIENEN QUE PASAR TODOS LAS ENTIDADES QUE CONTIENE INGRESO POR QUE SI NO LAS TOMA COMO VACIAS
+        # 1-FIND BY ID PACIENTE
+        entidad = "Paciente"
+        row = self.tblPacientes.currentRow()
+        id = str(self.tblPacientes.item(row, 0).text())
+        responsePaciente = recurso.get(entidad + "/" + id)
+        print(responsePaciente)
+        dataPaciente = jsonFormato.deserializar(responsePaciente)
+
+        # 2-FIND BY ID TIPO INGRESO
+        entidad = "TipoIngreso"
+        tipo = self.cmbTipoIngreso.currentText()
+        id_tipo = "0"
+        for x in self.lista_tipo_ingreso:
+            if x['nombre'] == tipo:
+                id_tipo = str(x['idTipoIngreso'])
+        responseTipoIngreso = recurso.get(entidad + "/" + id_tipo)
+        dataTipoIngreso = jsonFormato.deserializar(responseTipoIngreso)
+
+        # 3-ESTABLECER FECHAS Y HORAS
+        fechaIng = self.fechaIngreso.dateTime().toPyDateTime()
+        fechaIng = formato.fecha_date_edit_formato(fechaIng)
+
+        horaIng = self.horaIngreso.dateTime().toPyDateTime()
+        horaIng = formato.hora_date_edit_formato(horaIng)
+
+        fechaEgr = self.fechaEgreso.dateTime().toPyDateTime()
+        fechaEgr = formato.fecha_date_edit_formato(fechaEgr)
+
+        horaEgr = self.horaEgreso.dateTime().toPyDateTime()
+        horaEgr = formato.hora_date_edit_formato(horaEgr)
+
+        # 4-SERIALIZAR A JSON
+        json_base = {}
+        json_base["fechaIngreso"] = fechaIng
+        json_base["horaIngreso"] = horaIng
+        json_base["fechaEgreso"] = fechaEgr
+        json_base["horaEgreso"] = horaEgr
+        json_base["idPaciente"] = dataPaciente
+        json_base["idTipoIngreso"] = dataTipoIngreso
+        jsonVar = jsonFormato.serializar(json_base)
+        entidad = "Ingreso"
+        response = recurso.post(entidad, jsonVar)
+        self.id_ingreso = response
+        self.crear_ingreso_detalle()
+
+    def crear_ingreso_detalle(self):
+        print("ID en nuevo ingreso para detalle", self.id_ingreso)
+        # 1 - ESTABLECER ASIGNACION_PERSONAL_CENTRO_AREA_ESPACIO
+        entidad = "AsignacionPersonalCentroAreaEspacio"
+        row = self.tblAPCA.currentRow()
+        idACE = str(self.tblAPCA.item(row, 3).text())
+        idAPCA = str(self.tblAPCA.item(row, 4).text())
+        idTurno = str(self.tblAPCA.item(row, 5).text())
+        responseAPCAE = recurso.get(entidad + "/" + idAPCA + "/" + idACE + "/" + idTurno)
+        dataAPCAE = jsonFormato.deserializar(responseAPCAE)
+
+        # 2 - ESTBLECER INGRESO
+        entidad = "Ingreso"
+        responseIngreso = recurso.get(entidad + "/" + self.id_ingreso)
+        dataIngreso = jsonFormato.deserializar(responseIngreso)
+
+        # 3 - ESTABLECER FECHAS Y HORAS
+        fechaDet = self.fechaEgreso.dateTime().toPyDateTime()
+        fechaDet = formato.fecha_date_edit_formato(fechaDet)
+
+        horaDet = self.horaEgreso.dateTime().toPyDateTime()
+        horaDet = formato.hora_date_edit_formato(horaDet)
+
+        # 4 - OBTENER OBSERVACIONES
+        observaciones = self.txtObservaciones.toPlainText()
+
+        # 5 - SERIALIZAR A JSON
+        json_base = {}
+        json_base["asignacionPersonalCentroAreaEspacio"] = dataAPCAE
+        json_base["ingreso"] = dataIngreso
+        json_base["fechaDetalle"] = fechaDet
+        json_base["horaDetalle"] = horaDet
+        json_base["ingresoDetallePK"] = dict(idIngreso=self.id_ingreso, idAreaCentroEspacio=idACE,
+                                             idAsignacionPersonalCentroArea=idAPCA, idTurno=idTurno)
+        json_base["observaciones"] = observaciones
+        jsonVar = jsonFormato.serializar(json_base)
+        # 5 - HACER POST
+        entidad = "IngresoDetalle"
+        response = recurso.post(entidad, jsonVar)
+        self.close()
+
+    def paciente_row_was_clicked(self):
+        self.limpiar_paciente()
+        row = self.tblPacientes.currentRow()
+        if row != -1:
+            item = self.tblPacientes.item(row, 0)
+            self.txtIDPaciente.setText(item.text())
+            item = self.tblPacientes.item(row, 1)
+            self.txtPacienteNombre.setText(item.text())
+            item = self.tblPacientes.item(row, 2)
+            self.txtFechaNacimiento.setText(item.text())
+
+    def apca_row_was_clicked(self):
+        self.limpiar_apca()
+        row = self.tblAPCA.currentRow()
+        if row != -1:
+            item = self.tblAPCA.item(row, 0)
+            self.txtArea.setText(item.text())
+            item = self.tblAPCA.item(row, 1)
+            self.txtCentroAtencion.setText(item.text())
+            item = self.tblAPCA.item(row, 2)
+            self.txtPeronal_2.setText(item.text())
+
+    def limpiar_paciente(self):
+        self.txtIDPaciente.setText("")
+        self.txtPacienteNombre.setText("")
+        self.txtFechaNacimiento.setText("")
+
+    def limpiar_apca(self):
+        self.txtArea.setText("")
+        self.txtCentroAtencion.setText("")
+        self.txtPeronal_2.setText("")
+
+
+def get(entidad):
+    response = recurso.get(entidad)
+    data = jsonFormato.deserializar(response)
+    return data
+
+
+def post(entidad, payload):
+    response = recurso.post(entidad, payload)
+    print(response)
+
